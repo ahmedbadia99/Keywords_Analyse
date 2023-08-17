@@ -83,7 +83,7 @@
         $(document).ready(function(){
             $("#suche").click(function(e){
                 e.preventDefault();
-                
+                var keyword = $("#keyword").val();
 
                 $.ajax({
                     type:"POST",
