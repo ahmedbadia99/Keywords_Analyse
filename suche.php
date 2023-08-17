@@ -7,23 +7,17 @@ $keyword = isset($_POST['keyword']) ? $_POST['keyword'] : '';
 
 if (!empty($keyword)) {
     
-    $query = "SELECT page_id, page_title, COUNT(*) AS keyword_count
-              FROM pages
-              WHERE page_content LIKE '%$keyword%'
-              GROUP BY page_id, page_title
-              ORDER BY keyword_count DESC";
+    $query = "SELECT domain.Name , kw.Bezeichnung , kwcount.count
+                FROM domain INNER JOIN kwcount ON domain.Did = kwcount.Did INNER JOIN kw ON kw.Kwid = kwcount.Kwid
+                WHERE kw.Bezeichnung LIKE 'router'
+                GROUP BY domain.Name, kw.Bezeichnung
+                ORDER BY kwcount.count DESC";
 
     
     $result = $db->query($query);
 
     
-    if ($result) {
-        while ($row = $result->fetch_assoc()) {
-            echo "Seite: " . $row['page_title'] . " (Keyword-Anzahl: " . $row['keyword_count'] . ")<br>";
-        }
-    } else {
-        echo "Fehler bei der Abfrage: " . $db->error;
-    }
+    
 }
 
 
