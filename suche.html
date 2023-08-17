@@ -83,7 +83,18 @@
         $(document).ready(function(){
             $("#suche").click(function(e){
                 e.preventDefault();
-                alert("OK");
+                
+
+                $.ajax({
+                    type:"POST",
+                    url : "suche.php",
+                    data:{keyword : keyword},
+                    success : function(result){
+
+                        alert(result);
+
+                    }
+                });
             });
             
         });
