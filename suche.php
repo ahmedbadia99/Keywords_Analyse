@@ -16,11 +16,18 @@ if (!empty($keyword)) {
     
     $result = $db->query($query);
 
-    echo json_encode($result);
     
+    $rows = [];
+    while ($row = $result->fetch_assoc()) {
+        $rows[] = $row;
+    }
+
+    
+    echo json_encode($rows);
+        
 }
 else{
-    echo False ;
+    echo "False" ;
 }
 $db->close();
 ?>
