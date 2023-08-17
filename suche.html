@@ -73,10 +73,7 @@
                 <th>Keyword-Anzahl</th>
             </tr>
             <tbody id="kw_body">
-                <tr>
-                    <td>Beispiel-Seite</td>
-                    <td>3</td>
-                </tr>
+                
             </tbody>
         </table>
     </div>
@@ -91,18 +88,22 @@
                     type:"POST",
                     url : "suche.php",
                     data:{keyword : keyword},
-                    success : function(result){
-                        //var keywords =  JSON.parse(result);
+                    success: function(result) {
+                        if (result === "False") {
+                            alert("Bitte geben Sie ein Schlüsselwort ein.");
+                        } else {
+                            $("#kw_body").html("");
 
-                        $("#kw_body").html("");
+                            var keywords = JSON.parse(result);
 
-                        var keywords = JSON.parse(result);
-
-                        for (let i = 0 ; i < keywords.length ; i++)
-                        {
-                            $("#kw_body").append("<tr><td>"+keywords[i]["Name"]+"</td><td>"+keywords[i]["count"]+"</td></tr>");
+                            if (keywords.length === 0) {
+                                $("#kw_body").append("<tr><td colspan='2'>Keine Daten gefunden für dieses Schlüsselwort.</td></tr>"); 
+                            } else {
+                                for (let i = 0; i < keywords.length; i++) {
+                                    $("#kw_body").append("<tr><td>" + keywords[i]["Name"] + "</td><td>" + keywords[i]["count"] + "</td></tr>");
+                                }
+                            }
                         }
-
                     }
                 });
             });
