@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suche nach Schlüsselwörtern</title>
+    <style>
+        /* ... (your existing CSS styles) ... */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            margin-top: 0;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 3px;
+            margin-top: 10px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Suche nach Schlüsselwörtern</h2>
+        <form method="post" action="suche.php">
+            <label for="keyword">Suchwort:</label>
+            <input type="text" id="keyword" name="keyword" placeholder="Geben Sie das Schlüsselwort ein" required>
+            <input type="submit" value="Suchen">
+        </form>
+
+        <!-- Display search results in a table -->
+        <table>
+            <tr>
+                <th>Seite</th>
+                <th>Keyword-Anzahl</th>
+            </tr>
+            <!-- Example row, replace with dynamic PHP code -->
+            <tr>
+                <td>Beispiel-Seite</td>
+                <td>3</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
