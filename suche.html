@@ -72,10 +72,12 @@
                 <th>Seite</th>
                 <th>Keyword-Anzahl</th>
             </tr>
-            <tr>
-                <td>Beispiel-Seite</td>
-                <td>3</td>
-            </tr>
+            <tbody id="kw_body">
+                <tr>
+                    <td>Beispiel-Seite</td>
+                    <td>3</td>
+                </tr>
+            </tbody>
         </table>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -91,7 +93,15 @@
                     data:{keyword : keyword},
                     success : function(result){
                         //var keywords =  JSON.parse(result);
-                        console.log(result);
+
+                        $("#kw_body").html("");
+
+                        var keywords = JSON.parse(result);
+
+                        for (let i = 0 ; i < keywords.length ; i++)
+                        {
+                            $("#kw_body").append("<tr><td>"+keywords[i]["Name"]+"</td><td>"+keywords[i]["count"]+"</td></tr>");
+                        }
 
                     }
                 });
