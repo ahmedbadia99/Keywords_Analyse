@@ -7,11 +7,11 @@ $keyword = isset($_POST['keyword']) ? $_POST['keyword'] : '';
 
 if (!empty($keyword)) {
     
-    $query = "SELECT domain.Name , kw.Bezeichnung , kwcount.count
-                FROM domain INNER JOIN kwcount ON domain.Did = kwcount.Did INNER JOIN kw ON kw.Kwid = kwcount.Kwid
-                WHERE kw.Bezeichnung LIKE '%$keyword%'
-                GROUP BY domain.Name, kw.Bezeichnung
-                ORDER BY kwcount.count DESC";
+    $query = "SELECT domain.Name, kwcount.count
+    FROM domain INNER JOIN kwcount ON domain.Did = kwcount.Did INNER JOIN kw ON kw.Kwid = kwcount.Kwid
+    WHERE kw.Bezeichnung LIKE '%$keyword%'
+    GROUP BY domain.Name
+    ORDER BY kwcount.count DESC";
 
     
     $result = $db->query($query);
