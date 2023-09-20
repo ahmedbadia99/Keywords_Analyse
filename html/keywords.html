@@ -273,15 +273,8 @@
                         
                       </tr>
                     </thead>
-                    <tbody class="table-border-bottom-0">
-                      <tr>
-                        <td>
-                          <i class="fab fa-angular fa-lg text-danger me-3"></i>
-                          <span class="fw-medium">Angular Project</span>
-                        </td>
-                        <td>Albert Cook</td>
-                        
-                      </tr>
+                    <tbody class="table-border-bottom-0" id="kw_body">
+                      
                       
                     </tbody>
                   </table>
@@ -336,6 +329,42 @@
 
     <!-- Main JS -->
     <script src="../assets/js/main.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function(){
+            $("#suche").click(function(e){
+                e.preventDefault();
+
+                var keyword = $("#keyword").val();
+
+                $.ajax({
+                    type:"POST",
+                    url : "../suche.php",
+                    data:{keyword : keyword},
+                    success: function(result) {
+                      
+                        if (result === "False") {
+                            alert("Bitte geben Sie ein Schlüsselwort ein.");
+                        } else {
+                            $("#kw_body").html("");
+
+                            var keywords = JSON.parse(result);
+
+                            if (keywords.length === 0) {
+                                $("#kw_body").append("<tr><td colspan='2'>Keine Daten gefunden für dieses Schlüsselwort.</td></tr>"); 
+                            } else {
+                                for (let i = 0; i < keywords.length; i++) {
+                                    $("#kw_body").append("<tr><td>" + keywords[i]["Name"] + "</td><td>" + keywords[i]["count"] + "</td></tr>");
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+            
+        });
+    </script>
 
     <!-- Page JS -->
 
